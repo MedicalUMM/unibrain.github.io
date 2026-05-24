@@ -61,6 +61,24 @@
 </head>
 <body>
 
+  <div class="top-banners-container">
+    <div class="banner-left">
+      <a href="https://conferences.miccai.org/2026/" target="_blank" rel="noopener noreferrer">
+        <img src="static/images/miccai26_logo.png" alt="MICCAI 2026 Banner">
+      </a>
+    </div>
+
+    <div class="banner-right">
+      <a href="https://biomedia.doc.ic.ac.uk/" target="_blank" rel="noopener noreferrer">
+        <img src="static/images/lab_logo.png" alt="Lab Banner">
+      </a>
+      <a href="https://www.imperial.ac.uk/" target="_blank" rel="noopener noreferrer">
+        <img src="static/images/imperial_logo.png" alt="Imperial College London Banner">
+      </a>
+      
+    </div>
+  </div>
+
   <button class="scroll-to-top" onclick="scrollToTop()" title="Scroll to top" aria-label="Scroll to top">
     <i class="fas fa-chevron-up"></i>
   </button>
@@ -73,17 +91,16 @@
           <div class="column has-text-centered">
             <h1 class="title is-1 publication-title">Unified Multimodal Model for Brain MRI Imputation and Understanding</h1>
             <div class="is-size-5 publication-authors">
-              <span class="author-block">Zhiyun Song<sup>1*</sup>,</span>
-              <span class="author-block">Che Liu<sup>1*</sup>,</span>
-              <span class="author-block">Tian Xia<sup>1</sup>,</span>
-              <span class="author-block">Avinash Kori<sup>1</sup>,</span>
-              <span class="author-block">Wenjia Bai<sup>1,2</sup></span>
+              <span class="author-block">Zhiyun Song,</span>
+              <span class="author-block">Che Liu,</span>
+              <span class="author-block">Tian Xia,</span>
+              <span class="author-block">Avinash Kori,</span>
+              <span class="author-block">Wenjia Bai</span>
             </div>
 
             <div class="is-size-5 publication-authors">
-              <span class="author-block"><sup>1</sup> Department of Computing, Imperial College London<br><sup>2</sup> Department of Brain Sciences, Imperial College London</span><br>
-              <span class="author-block"><strong>MICCAI 2026</strong></span>
-              <span class="eql-cntrb"><small><br><sup>*</sup>Indicates Equal Contribution</small></span>
+              <span class="author-block">Imperial College London</span><br>
+              <span class="author-block">Early accepted to MICCAI 2026</span>
             </div>
 
             <div class="column has-text-centered">
@@ -94,10 +111,20 @@
                     <span>Paper</span>
                   </a>
                 </span>
+
                 <span class="link-block">
                   <a href="https://github.com/zhiyuns/UniBrain" target="_blank" class="external-link button is-normal is-rounded is-dark">
                     <span class="icon"><i class="fab fa-github"></i></span>
                     <span>Code</span>
+                  </a>
+                </span>
+
+                <span class="link-block">
+                  <a href="https://huggingface.co/Astrostellar/UniBrain" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <span style="font-size: 1.2em;">🤗</span>
+                    </span>
+                    <span>Model</span>
                   </a>
                 </span>
               </div>
@@ -108,15 +135,42 @@
     </div>
   </section>
 
-  <section class="hero teaser">
+<section class="hero teaser">
     <div class="container is-max-desktop">
       <div class="hero-body">
-        <video poster="" id="tree" autoplay controls muted loop height="100%" preload="metadata">
-          <source src="static/videos/banner_video.mp4" type="video/mp4">
-        </video>
-        <h2 class="subtitle has-text-centered">
+        
+        <div id="teaser-carousel" class="carousel results-carousel">
+          
+          <div class="item item-video1">
+            <video poster="" id="teaser-video1" controls muted height="100%" preload="metadata">
+              <source src="static/videos/showcase01.mov" type="video/mp4">
+            </video>
+          </div>
+          
+          <div class="item item-video2">
+            <video poster="" id="teaser-video2" controls muted height="100%" preload="metadata">
+               <source src="static/videos/showcase02.mov" type="video/mp4">
+            </video>
+          </div>
+          
+          <div class="item item-video3">
+            <video poster="" id="teaser-video3" controls muted height="100%" preload="metadata">
+               <source src="static/videos/showcase03.mov" type="video/mp4">
+            </video>
+          </div>
+          
+          <div class="item item-video4">
+            <video poster="" id="teaser-video4" controls muted height="100%" preload="metadata">
+               <source src="static/videos/showcase04.mov" type="video/mp4">
+            </video>
+          </div>
+
+        </div>
+
+        <h2 class="subtitle has-text-centered mt-5">
           <strong>UniBrain</strong> integrates missing modality imputation and clinical diagnosis within a single autoregressive process. By utilizing interleaved, description-enriched data flows, it bridges the gap between explicit imputation pipelines and downstream clinical reasoning.
         </h2>
+        
       </div>
     </div>
   </section>
@@ -141,7 +195,10 @@
       <div class="columns is-centered has-text-centered">
         <div class="column is-full">
           <h2 class="title is-3">Methodology</h2>
-          <img src="static/images/main_figure.png" alt="Overall framework of UniBrain" style="margin-bottom: 20px;"/>
+          <video autoplay muted loop playsinline controls preload="metadata" aria-label="Overall framework of UniBrain" style="margin-bottom: 20px; width: 100%; height: auto;">
+            <source src="static/videos/method.mp4" type="video/mp4">
+            <source src="static/videos/method.mov" type="video/mp4">
+          </video>
           <div class="content has-text-justified">
             <p>
               <strong>(a) Interleaved Data Flow:</strong> We formulate missing modality imputation and understanding as an autoregressive sequence modeling problem. Driven by a clinical instruction, UniBrain explicitly plans a conceptual step before synthesizing a missing sequence, seamlessly bridging the visual-semantic gap.

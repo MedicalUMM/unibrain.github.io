@@ -749,5 +749,40 @@ a:focus {
   }
 }
 
+/* Top Banners Styling */
+.top-banners-container {
+  display: flex;
+  justify-content: space-between; /* Pushes left and right sections apart */
+  align-items: center;            /* Vertically centers the logos */
+  padding: 1.5rem 2rem;           /* Adds breathing room around the edges */
+  width: 100%;
+  max-width: 1200px;              /* Keeps it aligned with your main content width */
+  margin: 0 auto;                 /* Centers the container on very wide screens */
+}
 
+.banner-left img {
+  height: 50px; /* Adjust this value to scale the MICCAI logo */
+  width: auto;
+  object-fit: contain;
+}
+
+.banner-right {
+  display: flex;
+  gap: 2rem;    /* Space between the Lab logo and the Imperial logo */
+  align-items: center;
+}
+
+.banner-right img {
+  height: 30px; /* Adjust this value to scale the Lab & Imperial logos */
+  width: auto;
+  object-fit: contain;
+}
+
+/* Mobile responsiveness: Stack the logos if the screen is too small */
+@media screen and (max-width: 768px) {
+  .top-banners-container {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+}
 
