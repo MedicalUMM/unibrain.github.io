@@ -1,0 +1,8 @@
+t1w-->t2w
+
+mmgan: /media/damoxing/che-liu-fileset/szy_projects/projects/VLMReasoning/code/mm-gan/results/Radgenome/mmgan_lgg_zeros_cl/BRATS2018/scenario_results/all_slices/epoch_final/0100
+
+resvit: /media/damoxing/che-liu-fileset/szy_projects/projects/VLMReasoning/code/ResViT/results/train_any-to-all_T1/test_2/images
+
+m2dn: /media/damoxing/che-liu-fileset/szy_projects/projects/VLMReasoning/code/ALDM_M2DN/LDM/outputs/samples_t1n__t2w_t2f_t1c
+

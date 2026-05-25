@@ -92,7 +92,7 @@ window.addEventListener('scroll', function() {
 
 // Video carousel autoplay when in view
 function setupVideoCarouselAutoplay() {
-    const carouselVideos = document.querySelectorAll('.results-carousel video');
+    const carouselVideos = document.querySelectorAll('.results-carousel:not(#teaser-carousel) video');
     
     if (carouselVideos.length === 0) return;
     
@@ -119,6 +119,146 @@ function setupVideoCarouselAutoplay() {
     });
 }
 
+function setupShowcaseVideoCarousel(carousel) {
+    const carouselElement = document.getElementById('teaser-carousel');
+    if (!carousel || !carouselElement) return;
+
+    const videos = Array.from(carouselElement.querySelectorAll('video'));
+    if (videos.length === 0) return;
+
+    let isInView = false;
+
+    function normalizeIndex(index) {
+        const length = carousel.state.length || videos.length;
+        return ((index % length) + length) % length;
+    }
+
+    function getActiveVideo() {
+        const nextIndex = Number(carousel.state.next);
+        const index = Number.isFinite(nextIndex) ? nextIndex : Number(carousel.state.index);
+        return videos[normalizeIndex(index)];
+    }
+
+    function pauseInactiveVideos(activeVideo) {
+        videos.forEach(video => {
+            if (video !== activeVideo) {
+                video.pause();
+                video.currentTime = 0;
+            }
+        });
+    }
+
+    function playActiveVideo(resetVideo) {
+        const activeVideo = getActiveVideo();
+        if (!activeVideo) return;
+
+        pauseInactiveVideos(activeVideo);
+
+        if (resetVideo) {
+            activeVideo.currentTime = 0;
+        }
+
+        if (isInView) {
+            activeVideo.play().catch(e => {
+                console.log('Autoplay prevented:', e);
+            });
+        }
+    }
+
+    videos.forEach(video => {
+        video.addEventListener('ended', function() {
+            if (video === getActiveVideo()) {
+                carousel.next();
+            }
+        });
+
+        video.addEventListener('play', function() {
+            pauseInactiveVideos(video);
+        });
+    });
+
+    carousel.on('show', function() {
+        window.setTimeout(function() {
+            playActiveVideo(true);
+        }, carousel.options.duration || 300);
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            isInView = entry.isIntersecting;
+
+            if (isInView) {
+                playActiveVideo(false);
+            } else {
+                videos.forEach(video => video.pause());
+            }
+        });
+    }, {
+        threshold: 0.5
+    });
+
+    observer.observe(carouselElement);
+}
+
+function setupResultsImageLightbox() {
+    const lightbox = document.getElementById('results-image-lightbox');
+    if (!lightbox) return;
+
+    const lightboxImage = lightbox.querySelector('.image-lightbox__image');
+    const closeButtons = lightbox.querySelectorAll('.image-lightbox__close, .image-lightbox__backdrop');
+    const resultImages = document.querySelectorAll('.results-image-table img');
+    let activeTrigger = null;
+
+    function openLightbox(image) {
+        activeTrigger = image;
+        lightboxImage.src = image.src;
+        lightboxImage.alt = image.alt;
+        lightbox.classList.add('is-active');
+        lightbox.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        lightbox.querySelector('.image-lightbox__close').focus();
+    }
+
+    function closeLightbox() {
+        lightbox.classList.remove('is-active');
+        lightbox.setAttribute('aria-hidden', 'true');
+        lightboxImage.src = '';
+        document.body.style.overflow = '';
+
+        if (activeTrigger) {
+            activeTrigger.focus();
+            activeTrigger = null;
+        }
+    }
+
+    resultImages.forEach(image => {
+        image.setAttribute('tabindex', '0');
+        image.setAttribute('role', 'button');
+        image.setAttribute('aria-label', 'Open zoomed image: ' + image.alt);
+
+        image.addEventListener('click', function() {
+            openLightbox(image);
+        });
+
+        image.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                openLightbox(image);
+            }
+        });
+    });
+
+    closeButtons.forEach(button => {
+        button.addEventListener('click', closeLightbox);
+    });
+
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape' && lightbox.classList.contains('is-active')) {
+            closeLightbox();
+        }
+    });
+}
+
 $(document).ready(function() {
     // Check for click events on the navbar burger icon
 
@@ -131,12 +271,22 @@ $(document).ready(function() {
 		autoplaySpeed: 5000,
     }
 
-	// Initialize all div with carousel class
-    var carousels = bulmaCarousel.attach('.carousel', options);
+    var teaserCarousels = bulmaCarousel.attach('#teaser-carousel', {
+		slidesToScroll: 1,
+		slidesToShow: 1,
+		loop: true,
+		infinite: false,
+		autoplay: false,
+    });
+
+	// Initialize non-video-driven carousels with fixed autoplay
+    var carousels = bulmaCarousel.attach('.carousel:not(#teaser-carousel)', options);
 	
     bulmaSlider.attach();
     
     // Setup video autoplay for carousel
+    setupShowcaseVideoCarousel(teaserCarousels[0]);
     setupVideoCarouselAutoplay();
+    setupResultsImageLightbox();
 
 })

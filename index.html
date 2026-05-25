@@ -91,11 +91,21 @@
           <div class="column has-text-centered">
             <h1 class="title is-1 publication-title">Unified Multimodal Model for Brain MRI Imputation and Understanding</h1>
             <div class="is-size-5 publication-authors">
-              <span class="author-block">Zhiyun Song,</span>
-              <span class="author-block">Che Liu,</span>
-              <span class="author-block">Tian Xia,</span>
-              <span class="author-block">Avinash Kori,</span>
-              <span class="author-block">Wenjia Bai</span>
+              <span class="author-block">
+                <a href="https://zhiyuns.github.io/" target="_blank">Zhiyun Song</a>,
+              </span>
+              <span class="author-block">
+                <a href="https://www.linkedin.com/in/che-liu-32abcs7b1/" target="_blank">Che Liu</a>,
+              </span>
+              <span class="author-block">
+                <a href="https://profiles.imperial.ac.uk/t.xia" target="_blank">Tian Xia</a>,
+              </span>
+              <span class="author-block">
+                <a href="https://koriavinash1.github.io/" target="_blank">Avinash Kori</a>,
+              </span>
+              <span class="author-block">
+                <a href="https://www.doc.ic.ac.uk/~wbai/web/" target="_blank">Wenjia Bai</a>
+              </span>
             </div>
 
             <div class="is-size-5 publication-authors">
@@ -165,10 +175,16 @@
             </video>
           </div>
 
+          <div class="item item-video5">
+            <video poster="" id="teaser-video5" controls muted height="100%" preload="metadata">
+               <source src="static/videos/showcase05.mov" type="video/mp4">
+            </video>
+          </div>
+
         </div>
 
         <h2 class="subtitle has-text-centered mt-5">
-          <strong>UniBrain</strong> integrates missing modality imputation and clinical diagnosis within a single autoregressive process. By utilizing interleaved, description-enriched data flows, it bridges the gap between explicit imputation pipelines and downstream clinical reasoning.
+          <strong>UniBrain</strong> integrates missing modality imputation and clinical diagnosis within a single autoregressive process.
         </h2>
         
       </div>
@@ -196,7 +212,6 @@
         <div class="column is-full">
           <h2 class="title is-3">Methodology</h2>
           <video autoplay muted loop playsinline controls preload="metadata" aria-label="Overall framework of UniBrain" style="margin-bottom: 20px; width: 100%; height: auto;">
-            <source src="static/videos/method.mp4" type="video/mp4">
             <source src="static/videos/method.mov" type="video/mp4">
           </video>
           <div class="content has-text-justified">
@@ -218,6 +233,20 @@
   <section class="section hero is-light">
     <div class="container is-max-desktop">
       <h2 class="title is-3 has-text-centered">Experimental Results</h2>
+
+      <div class="content">
+        <h3 class="title is-4">Dataset: RadGenome-Brain MRI</h3>
+        <p class="has-text-justified">
+          Our model training and evaluation rely on the public <strong><a href="https://github.com/ljy19970415/AutoRG-Brain" target="_blank" rel="noopener noreferrer">RadGenome-Brain MRI</a></strong> dataset, which contains <strong>3,408 brain MRI scans</strong> acquired from multiple sites with paired radiology reports. The reports were written by senior radiologists, providing findings and impressions grounded in the annotated image regions.
+        </p>
+        <ul>
+          <li><strong>Six MRI Modalities:</strong> T1, T2, FLAIR, DWI, ADC, and T1ce.</li>
+          <li><strong>Five Disease Types:</strong> Glioma, meningioma, metastasis, stroke, and white matter hyperintensities (WMH).</li>
+          <li><strong>Data Split:</strong> Training (<em>n</em>=2,382), validation (<em>n</em>=338), and test sets (<em>n</em>=688).</li>
+          <li><strong>Preprocessing:</strong> All images are resampled to the same spacial resolution and normalized to same intensity range via percentile clip. Size-related text descriptions are projected to the 2D slice-specific space.</li>
+          <li><strong>Note:</strong> Subjects who don't have multi-sequence MRIs are excluded from the analysis for fair comparisons.</li>
+        </ul>
+      </div>
       
       <div class="content">
         <h3 class="title is-4">Diagnosis and Report Generation with Missing MRIs</h3>
@@ -226,19 +255,59 @@
           <table class="table is-striped is-fullwidth is-hoverable">
             <thead>
               <tr>
-                <th>Methods</th>
-                <th>T1w only (Top-1)</th>
-                <th>T1w + T2w (Top-1)</th>
-                <th>T1w+T2w+T2f (Top-1)</th>
-                <th>Complete Data (Top-1)</th>
+                <th rowspan="2" style="vertical-align: middle;">Methods</th>
+                <th colspan="2" class="has-text-centered">T1w only</th>
+                <th colspan="2" class="has-text-centered">T1w + T2w</th>
+                <th colspan="2" class="has-text-centered">T1w+T2w+T2f</th>
+                <th colspan="2" class="has-text-centered">Complete Data</th>
+              </tr>
+              <tr>
+                <th>Top-1</th>
+                <th>RaTE</th>
+                <th>Top-1</th>
+                <th>RaTE</th>
+                <th>Top-1</th>
+                <th>RaTE</th>
+                <th>Top-1</th>
+                <th>RaTE</th>
               </tr>
             </thead>
             <tbody>
-              <tr><td>ShaSpec (Implicit)</td><td>63.61</td><td>71.98</td><td>75.26</td><td>77.19</td></tr>
-              <tr><td>SimMLM (Implicit)</td><td>65.98</td><td>74.47</td><td>76.60</td><td>78.72</td></tr>
-              <tr><td>M2DN + UniBrain (Explicit)</td><td>56.03</td><td>75.18</td><td>76.60</td><td>-</td></tr>
-              <tr><td>BAGEL (MLLM)</td><td>11.35</td><td>17.02</td><td>22.70</td><td>28.37</td></tr>
-              <tr><td><strong>UniBrain (Ours)</strong></td><td><strong>74.47</strong></td><td><strong>76.60</strong></td><td><strong>78.01</strong></td><td><strong>82.06</strong></td></tr>
+              <tr>
+                <td>SimMLM (Implicit)</td>
+                <td>65.98</td><td>-</td>
+                <td>74.47</td><td>-</td>
+                <td>76.60</td><td>-</td>
+                <td>78.72</td><td>-</td>
+              </tr>
+              <tr>
+                <td>M2DN + UniBrain (Explicit)</td>
+                <td>56.03</td><td>57.76</td>
+                <td>75.18</td><td>60.08</td>
+                <td>76.60</td><td>60.98</td>
+                <td>-</td><td>-</td>
+              </tr>
+              <tr>
+                <td>BAGEL (UMM)</td>
+                <td>11.35</td><td>44.37</td>
+                <td>17.02</td><td>41.08</td>
+                <td>22.70</td><td>42.35</td>
+                <td>28.37</td><td>43.19</td>
+              </tr>
+              <tr>
+                <td><strong>UniBrain Und. Only</strong></td>
+                <td>69.50</td><td>61.50</td>
+                <td>73.05</td><td>60.48</td>
+                <td>76.60</td><td>61.04</td>
+                <td><strong>82.06</strong></td><td><strong>61.62</strong></td>
+              </tr>
+              <tr>
+                <td><strong>UniBrain</strong></td>
+                <td><strong>74.47</strong></td><td><strong>61.57</strong></td>
+                <td><strong>76.60</strong></td><td><strong>61.24</strong></td>
+                <td><strong>78.01</strong></td><td><strong>61.90</strong></td>
+                <td><strong>82.06</strong></td><td><strong>61.62</strong></td>
+              </tr>
             </tbody>
           </table>
         </div>
@@ -249,24 +318,114 @@
           <table class="table is-striped is-fullwidth is-hoverable">
             <thead>
               <tr>
-                <th>Methods</th>
-                <th>T1w → T2w (PSNR)</th>
-                <th>T1w → T2w (Top-1)</th>
-                <th>T1w, T2w → T2f (Top-1)</th>
-                <th>T1w, T2w, T2f → T1c (Top-1)</th>
+                <th rowspan="2" style="vertical-align: middle;">Methods</th>
+                <th colspan="2" class="has-text-centered">T1w &rarr; T2w</th>
+                <th colspan="2" class="has-text-centered">T1w, T2w &rarr; T2f</th>
+                <th colspan="2" class="has-text-centered">T1w, T2w, T2f &rarr; T1c</th>
+              </tr>
+              <tr>
+                <th class="has-text-centered">PSNR</th>
+                <th class="has-text-centered">Top-1</th>
+                <th class="has-text-centered">PSNR</th>
+                <th class="has-text-centered">Top-1</th>
+                <th class="has-text-centered">PSNR</th>
+                <th class="has-text-centered">Top-1</th>
               </tr>
             </thead>
             <tbody>
-              <tr><td>MM-GAN</td><td>23.08</td><td>56.74</td><td>56.03</td><td>60.19</td></tr>
-              <tr><td>ResViT</td><td>22.81</td><td>57.45</td><td>67.38</td><td>61.70</td></tr>
-              <tr><td>UniMedVL</td><td>19.82</td><td>56.03</td><td>63.12</td><td>56.74</td></tr>
-              <tr><td><strong>UniBrain (Ours)</strong></td><td>22.23</td><td><strong>68.09</strong></td><td>67.38</td><td>74.47</td></tr>
-              <tr><td><strong>UniBrain* (Ensemble)</strong></td><td><strong>23.43</strong></td><td>63.83</td><td><strong>68.08</strong></td><td><strong>76.60</strong></td></tr>
+              <tr>
+                <td>MM-GAN (GAN)</td>
+                <td class="has-text-centered">23.08</td><td class="has-text-centered">56.74</td>
+                <td class="has-text-centered">23.32</td><td class="has-text-centered">56.03</td>
+                <td class="has-text-centered">23.40</td><td class="has-text-centered">60.19</td>
+              </tr>
+              <tr>
+                <td>ResViT (Transformer)</td>
+                <td class="has-text-centered">22.81</td><td class="has-text-centered">57.45</td>
+                <td class="has-text-centered">23.13</td><td class="has-text-centered">67.38</td>
+                <td class="has-text-centered">23.00</td><td class="has-text-centered">61.70</td>
+              </tr>
+              <tr>
+                <td>M2DN (Diffusion)</td>
+                <td class="has-text-centered">22.79</td><td class="has-text-centered">51.06</td>
+                <td class="has-text-centered">22.46</td><td class="has-text-centered">51.06</td>
+                <td class="has-text-centered">22.05</td><td class="has-text-centered">61.70</td>
+              </tr>
+              <tr>
+                <td>UniMedVL (UMM)</td>
+                <td class="has-text-centered">19.82</td><td class="has-text-centered">56.03</td>
+                <td class="has-text-centered">19.96</td><td class="has-text-centered">63.12</td>
+                <td class="has-text-centered">21.53</td><td class="has-text-centered">56.74</td>
+              </tr>
+              <tr>
+                <td><strong>UniBrain</strong></td>
+                <td class="has-text-centered">22.23</td><td class="has-text-centered"><strong>68.09</strong></td>
+                <td class="has-text-centered">22.58</td><td class="has-text-centered">67.38</td>
+                <td class="has-text-centered">22.26</td><td class="has-text-centered">74.47</td>
+              </tr>
+              <tr>
+                <td><strong>UniBrain (Ensemble)</strong></td>
+                <td class="has-text-centered"><strong>23.43</strong></td><td class="has-text-centered">63.83</td>
+                <td class="has-text-centered"><strong>23.49</strong></td><td class="has-text-centered"><strong>68.08</strong></td>
+                <td class="has-text-centered"><strong>23.52</strong></td><td class="has-text-centered"><strong>76.60</strong></td>
+              </tr>
             </tbody>
           </table>
         </div>
       </div>
 
+      <h3 class="title is-4 has-text-centered mt-6">Qualitative Imputation Results</h3>
+      <div class="table-container">
+        <table class="table is-bordered is-fullwidth has-text-centered results-image-table">
+          <thead>
+            <tr>
+              <th style="vertical-align: middle; width: 9%;">Task</th>
+              <th class="has-text-centered">MM-GAN</th>
+              <th class="has-text-centered">ResViT</th>
+              <th class="has-text-centered">M2DN</th>
+              <th class="has-text-centered">UniMedVL</th>
+              <th class="has-text-centered">UniBrain (Gen.)</th>
+              <th class="has-text-centered">UniBrain</th>
+              <th class="has-text-centered">Target</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="vertical-align: middle;"><strong>T1w &rarr; T2w</strong></td>
+              <td><img src="static/images/results/t1_t2_mmgan.png" alt="MM-GAN" loading="lazy"></td>
+              <td><img src="static/images/results/t1_t2_resvit.png" alt="ResViT" loading="lazy"></td>
+              <td><img src="static/images/results/t1_t2_m2dn.png" alt="M2DN" loading="lazy"></td>
+              <td><img src="static/images/results/t1_t2_unimedvl.png" alt="UniMedVL" loading="lazy"></td>
+              <td><img src="static/images/results/t1_t2_unibrain_gen.png" alt="UniBrain Gen" loading="lazy"></td>
+              <td><img src="static/images/results/t1_t2_unibrain.png" alt="UniBrain" loading="lazy"></td>
+              <td><img src="static/images/results/t1_t2_target.png" alt="Target" loading="lazy"></td>
+            </tr>
+            
+            <tr>
+              <td style="vertical-align: middle;"><strong>T1w, T2w &rarr; T2f</strong></td>
+              <td><img src="static/images/results/t2f_mmgan.png" alt="MM-GAN" loading="lazy"></td>
+              <td><img src="static/images/results/t2f_resvit.png" alt="ResViT" loading="lazy"></td>
+              <td><img src="static/images/results/t2f_m2dn.png" alt="M2DN" loading="lazy"></td>
+              <td><img src="static/images/results/t2f_unimedvl.png" alt="UniMedVL" loading="lazy"></td>
+              <td><img src="static/images/results/t2f_unibrain_gen.png" alt="UniBrain Gen" loading="lazy"></td>
+              <td><img src="static/images/results/t2f_unibrain.png" alt="UniBrain" loading="lazy"></td>
+              <td><img src="static/images/results/t2f_target.png" alt="Target" loading="lazy"></td>
+            </tr>
+
+            <tr>
+              <td style="vertical-align: middle;"><strong>T1w, T2w, T2f &rarr; T1c</strong></td>
+              <td><img src="static/images/results/t1c_mmgan.png" alt="MM-GAN" loading="lazy"></td>
+              <td><img src="static/images/results/t1c_resvit.png" alt="ResViT" loading="lazy"></td>
+              <td><img src="static/images/results/t1c_m2dn.png" alt="M2DN" loading="lazy"></td>
+              <td><img src="static/images/results/t1c_unimedvl.png" alt="UniMedVL" loading="lazy"></td>
+              <td><img src="static/images/results/t1c_unibrain_gen.png" alt="UniBrain Gen" loading="lazy"></td>
+              <td><img src="static/images/results/t1c_unibrain.png" alt="UniBrain" loading="lazy"></td>
+              <td><img src="static/images/results/t1c_target.png" alt="Target" loading="lazy"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
       <h3 class="title is-4 has-text-centered mt-6">Qualitative Examples</h3>
       <div id="results-carousel" class="carousel results-carousel">
         <div class="item">
@@ -334,6 +493,14 @@
 }</code></pre>
     </div>
   </section>
+
+  <div class="image-lightbox" id="results-image-lightbox" aria-hidden="true">
+    <button class="image-lightbox__backdrop" type="button" aria-label="Close zoomed image"></button>
+    <div class="image-lightbox__dialog" role="dialog" aria-modal="true" aria-label="Zoomed qualitative result">
+      <button class="image-lightbox__close" type="button" aria-label="Close zoomed image">&times;</button>
+      <img class="image-lightbox__image" src="" alt="">
+    </div>
+  </div>
 
   <footer class="footer">
     <div class="container">
