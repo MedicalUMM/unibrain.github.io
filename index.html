@@ -247,10 +247,13 @@
           <li><strong>Note:</strong> Subjects who don't have multi-sequence MRIs are excluded from the analysis for fair comparisons.</li>
         </ul>
       </div>
-      
+
       <div class="content">
         <h3 class="title is-4">Diagnosis and Report Generation with Missing MRIs</h3>
         <p>UniBrain achieves state-of-the-art diagnostic accuracy, specifically scoring <strong>74.47% Top-1 Accuracy</strong> in the highly challenging T1w-only availability setting, jumping to <strong>82.06%</strong> with complete data.</p>
+        <figure class="image mt-4 mb-5">
+          <img src="static/images/diagnosis.png" alt="Diagnosis and report generation with missing MRIs visualization" loading="lazy">
+        </figure>
         <div class="table-container">
           <table class="table is-striped is-fullwidth is-hoverable">
             <thead>
@@ -312,8 +315,60 @@
           </table>
         </div>
 
-        <h3 class="title is-4 mt-6">Missing Modality Imputation Fidelity</h3>
+        <h3 class="title is-4 mt-6">MRI Modality Imputation</h3>
         <p>While dedicated explicit modality imputers prioritize low-level pixel similarity (PSNR/SSIM), they suffer from disjointed feature spaces. UniBrain generates clinically usable outputs that drastically boost downstream Top-1 accuracy.</p>
+        
+        <div class="table-container">
+          <table class="table is-bordered is-fullwidth has-text-centered results-image-table">
+            <thead>
+              <tr>
+                <th style="vertical-align: middle; width: 9%;">Task</th>
+                <th class="has-text-centered">MM-GAN</th>
+                <th class="has-text-centered">ResViT</th>
+                <th class="has-text-centered">M2DN</th>
+                <th class="has-text-centered">UniMedVL</th>
+                <th class="has-text-centered">UniBrain (Gen.)</th>
+                <th class="has-text-centered">UniBrain</th>
+                <th class="has-text-centered">Target</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="vertical-align: middle;"><strong>T1w &rarr; T2w</strong></td>
+                <td><img src="static/images/results/t1_t2_mmgan.png" alt="MM-GAN" loading="lazy"></td>
+                <td><img src="static/images/results/t1_t2_resvit.png" alt="ResViT" loading="lazy"></td>
+                <td><img src="static/images/results/t1_t2_m2dn.png" alt="M2DN" loading="lazy"></td>
+                <td><img src="static/images/results/t1_t2_unimedvl.png" alt="UniMedVL" loading="lazy"></td>
+                <td><img src="static/images/results/t1_t2_unibrain_gen.png" alt="UniBrain Gen" loading="lazy"></td>
+                <td><img src="static/images/results/t1_t2_unibrain.png" alt="UniBrain" loading="lazy"></td>
+                <td><img src="static/images/results/t1_t2_target.png" alt="Target" loading="lazy"></td>
+              </tr>
+              
+              <tr>
+                <td style="vertical-align: middle;"><strong>T1w, T2w &rarr; T2f</strong></td>
+                <td><img src="static/images/results/t2f_mmgan.png" alt="MM-GAN" loading="lazy"></td>
+                <td><img src="static/images/results/t2f_resvit.png" alt="ResViT" loading="lazy"></td>
+                <td><img src="static/images/results/t2f_m2dn.png" alt="M2DN" loading="lazy"></td>
+                <td><img src="static/images/results/t2f_unimedvl.png" alt="UniMedVL" loading="lazy"></td>
+                <td><img src="static/images/results/t2f_unibrain_gen.png" alt="UniBrain Gen" loading="lazy"></td>
+                <td><img src="static/images/results/t2f_unibrain.png" alt="UniBrain" loading="lazy"></td>
+                <td><img src="static/images/results/t2f_target.png" alt="Target" loading="lazy"></td>
+              </tr>
+
+              <tr>
+                <td style="vertical-align: middle;"><strong>T1w, T2w, T2f &rarr; T1c</strong></td>
+                <td><img src="static/images/results/t1c_mmgan.png" alt="MM-GAN" loading="lazy"></td>
+                <td><img src="static/images/results/t1c_resvit.png" alt="ResViT" loading="lazy"></td>
+                <td><img src="static/images/results/t1c_m2dn.png" alt="M2DN" loading="lazy"></td>
+                <td><img src="static/images/results/t1c_unimedvl.png" alt="UniMedVL" loading="lazy"></td>
+                <td><img src="static/images/results/t1c_unibrain_gen.png" alt="UniBrain Gen" loading="lazy"></td>
+                <td><img src="static/images/results/t1c_unibrain.png" alt="UniBrain" loading="lazy"></td>
+                <td><img src="static/images/results/t1c_target.png" alt="Target" loading="lazy"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        
         <div class="table-container">
           <table class="table is-striped is-fullwidth is-hoverable">
             <thead>
@@ -374,73 +429,6 @@
         </div>
       </div>
 
-      <h3 class="title is-4 has-text-centered mt-6">Qualitative Imputation Results</h3>
-      <div class="table-container">
-        <table class="table is-bordered is-fullwidth has-text-centered results-image-table">
-          <thead>
-            <tr>
-              <th style="vertical-align: middle; width: 9%;">Task</th>
-              <th class="has-text-centered">MM-GAN</th>
-              <th class="has-text-centered">ResViT</th>
-              <th class="has-text-centered">M2DN</th>
-              <th class="has-text-centered">UniMedVL</th>
-              <th class="has-text-centered">UniBrain (Gen.)</th>
-              <th class="has-text-centered">UniBrain</th>
-              <th class="has-text-centered">Target</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td style="vertical-align: middle;"><strong>T1w &rarr; T2w</strong></td>
-              <td><img src="static/images/results/t1_t2_mmgan.png" alt="MM-GAN" loading="lazy"></td>
-              <td><img src="static/images/results/t1_t2_resvit.png" alt="ResViT" loading="lazy"></td>
-              <td><img src="static/images/results/t1_t2_m2dn.png" alt="M2DN" loading="lazy"></td>
-              <td><img src="static/images/results/t1_t2_unimedvl.png" alt="UniMedVL" loading="lazy"></td>
-              <td><img src="static/images/results/t1_t2_unibrain_gen.png" alt="UniBrain Gen" loading="lazy"></td>
-              <td><img src="static/images/results/t1_t2_unibrain.png" alt="UniBrain" loading="lazy"></td>
-              <td><img src="static/images/results/t1_t2_target.png" alt="Target" loading="lazy"></td>
-            </tr>
-            
-            <tr>
-              <td style="vertical-align: middle;"><strong>T1w, T2w &rarr; T2f</strong></td>
-              <td><img src="static/images/results/t2f_mmgan.png" alt="MM-GAN" loading="lazy"></td>
-              <td><img src="static/images/results/t2f_resvit.png" alt="ResViT" loading="lazy"></td>
-              <td><img src="static/images/results/t2f_m2dn.png" alt="M2DN" loading="lazy"></td>
-              <td><img src="static/images/results/t2f_unimedvl.png" alt="UniMedVL" loading="lazy"></td>
-              <td><img src="static/images/results/t2f_unibrain_gen.png" alt="UniBrain Gen" loading="lazy"></td>
-              <td><img src="static/images/results/t2f_unibrain.png" alt="UniBrain" loading="lazy"></td>
-              <td><img src="static/images/results/t2f_target.png" alt="Target" loading="lazy"></td>
-            </tr>
-
-            <tr>
-              <td style="vertical-align: middle;"><strong>T1w, T2w, T2f &rarr; T1c</strong></td>
-              <td><img src="static/images/results/t1c_mmgan.png" alt="MM-GAN" loading="lazy"></td>
-              <td><img src="static/images/results/t1c_resvit.png" alt="ResViT" loading="lazy"></td>
-              <td><img src="static/images/results/t1c_m2dn.png" alt="M2DN" loading="lazy"></td>
-              <td><img src="static/images/results/t1c_unimedvl.png" alt="UniMedVL" loading="lazy"></td>
-              <td><img src="static/images/results/t1c_unibrain_gen.png" alt="UniBrain Gen" loading="lazy"></td>
-              <td><img src="static/images/results/t1c_unibrain.png" alt="UniBrain" loading="lazy"></td>
-              <td><img src="static/images/results/t1c_target.png" alt="Target" loading="lazy"></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      
-      <h3 class="title is-4 has-text-centered mt-6">Qualitative Examples</h3>
-      <div id="results-carousel" class="carousel results-carousel">
-        <div class="item">
-          <img src="static/images/carousel1.jpg" alt="Qualitative Result 1" loading="lazy"/>
-          <h2 class="subtitle has-text-centered">Comparison of imputed images and report generation against baselines.</h2>
-        </div>
-        <div class="item">
-          <img src="static/images/carousel2.jpg" alt="Qualitative Result 2" loading="lazy"/>
-          <h2 class="subtitle has-text-centered">UniBrain accurately captures structural abnormalities compared to implicit models.</h2>
-        </div>
-        <div class="item">
-          <img src="static/images/carousel3.jpg" alt="Qualitative Result 3" loading="lazy"/>
-          <h2 class="subtitle has-text-centered">Robust reasoning with self-generated artefacts.</h2>
-        </div>
-      </div>
     </div>
   </section>
 
