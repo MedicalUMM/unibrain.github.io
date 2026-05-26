@@ -242,6 +242,145 @@ body {
     border-radius: var(--border-radius-lg);
 }
 
+.methodology-video {
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-lg);
+  display: block;
+  height: auto;
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+.methodology-highlights {
+  display: grid;
+  gap: 0.65rem;
+  margin-top: 0.75rem;
+  text-align: left;
+}
+
+.methodology-highlight {
+  align-items: flex-start;
+  background: var(--background-primary);
+  border: 1px solid var(--border-color);
+  border-left: 4px solid var(--primary-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: auto 1fr;
+  padding: 0.85rem 1rem;
+  transition: var(--transition);
+}
+
+.methodology-highlight:nth-child(2) {
+  border-left-color: #10b981;
+}
+
+.methodology-highlight:nth-child(3) {
+  border-left-color: #f59e0b;
+}
+
+.methodology-highlight:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.methodology-highlight__index {
+  align-items: center;
+  background: var(--background-accent);
+  border-radius: 50%;
+  color: var(--primary-color);
+  display: flex;
+  flex-shrink: 0;
+  font-size: 0.78rem;
+  font-weight: 800;
+  height: 1.9rem;
+  justify-content: center;
+  width: 1.9rem;
+}
+
+.methodology-highlight__body {
+  min-width: 0;
+  width: 100%;
+}
+
+.methodology-flow {
+  align-items: center;
+  display: grid;
+  gap: 0.65rem;
+  grid-template-columns: minmax(0, 0.8fr) auto minmax(0, 1.25fr);
+}
+
+.methodology-flow__problem,
+.methodology-flow__solution {
+  border-radius: var(--border-radius);
+  padding: 0.7rem 0.85rem;
+}
+
+.methodology-flow__problem {
+  background: var(--background-secondary);
+  border: 1px solid var(--border-color);
+}
+
+.methodology-flow__solution {
+  background: linear-gradient(180deg, #f8fbff 0%, #ffffff 100%);
+  border: 1px solid rgba(37, 99, 235, 0.22);
+  box-shadow: var(--shadow-sm);
+}
+
+.methodology-flow__problem span,
+.methodology-flow__solution span {
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 800;
+  margin-bottom: 0.25rem;
+  text-transform: uppercase;
+}
+
+.methodology-flow__problem span {
+  color: var(--text-light);
+}
+
+.methodology-flow__solution span {
+  color: var(--primary-color);
+}
+
+.methodology-flow__arrow {
+  align-items: center;
+  background: var(--primary-color);
+  border-radius: 50%;
+  box-shadow: var(--shadow-md);
+  color: white;
+  display: flex;
+  font-size: 0.78rem;
+  height: 1.8rem;
+  justify-content: center;
+  width: 1.8rem;
+}
+
+.methodology-flow__problem p {
+  color: var(--text-primary);
+  font-size: 0.88rem;
+  font-weight: 700;
+  line-height: 1.35;
+  margin: 0;
+}
+
+.methodology-highlight h3 {
+  color: var(--text-primary);
+  font-size: 0.98rem;
+  font-weight: 800;
+  line-height: 1.25;
+  margin: 0 0 0.25rem;
+}
+
+.methodology-flow__solution p {
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+  line-height: 1.45;
+  margin: 0;
+}
+
 .publication-body img {
   border-radius: var(--border-radius);
   box-shadow: var(--shadow-md);
@@ -646,6 +785,30 @@ code {
     margin: 0.5rem;
     padding: 1rem;
   }
+
+  .methodology-highlight {
+    gap: 0.65rem;
+    padding: 0.85rem;
+  }
+
+  .methodology-flow {
+    gap: 0.75rem;
+    grid-template-columns: 1fr;
+  }
+
+  .methodology-flow__arrow {
+    justify-self: center;
+    transform: rotate(90deg);
+  }
+
+  .methodology-highlight h3 {
+    font-size: 0.96rem;
+  }
+
+  .methodology-flow__problem p,
+  .methodology-flow__solution p {
+    font-size: 0.88rem;
+  }
   
   .teaser .hero-body {
     padding: 1rem;
@@ -885,4 +1048,24 @@ a:focus {
     right: 0.25rem;
     top: 0.25rem;
   }
+}
+
+
+/* Motivation Carousel Image Styling */
+.motivation-item {
+  padding: 0.5rem; /* Reduced padding for a cleaner look */
+}
+
+.motivation-img {
+  width: 100%; /* Expands the image to fill the container width */
+  margin: 0 auto; 
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  cursor: zoom-in;
+  display: block; 
+  transition: var(--transition);
+}
+
+.motivation-img:hover {
+  filter: brightness(1.05);
 }

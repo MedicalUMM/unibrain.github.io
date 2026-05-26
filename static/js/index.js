@@ -206,7 +206,7 @@ function setupResultsImageLightbox() {
 
     const lightboxImage = lightbox.querySelector('.image-lightbox__image');
     const closeButtons = lightbox.querySelectorAll('.image-lightbox__close, .image-lightbox__backdrop');
-    const resultImages = document.querySelectorAll('.results-image-table img');
+    const zoomableImages = document.querySelectorAll('.results-image-table img, .motivation-img.clickable-image');
     let activeTrigger = null;
 
     function openLightbox(image) {
@@ -231,7 +231,7 @@ function setupResultsImageLightbox() {
         }
     }
 
-    resultImages.forEach(image => {
+    zoomableImages.forEach(image => {
         image.setAttribute('tabindex', '0');
         image.setAttribute('role', 'button');
         image.setAttribute('aria-label', 'Open zoomed image: ' + image.alt);

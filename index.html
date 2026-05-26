@@ -206,24 +206,106 @@
     </div>
   </section>
 
+<section class="section has-background-white">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered mb-6">Motivation</h2>
+      
+      <div class="columns is-centered">
+        <div class="column is-full">
+          
+          <div id="motivation-carousel" class="carousel results-carousel">
+            
+            <div class="item has-text-centered motivation-item">
+              <img src="static/images/motivations/motivation_1.png" alt="Ideal Multi-sequence MRI" class="motivation-img clickable-image">
+            </div>
+
+            <div class="item has-text-centered motivation-item">
+              <img src="static/images/motivations/motivation_2.png" alt="Missing Sequences" class="motivation-img clickable-image">
+            </div>
+
+            <div class="item has-text-centered motivation-item">
+              <img src="static/images/motivations/motivation_3.png" alt="Solutions for Missing Data" class="motivation-img clickable-image">
+            </div>
+
+            <div class="item has-text-centered motivation-item">
+              <img src="static/images/motivations/motivation_4.png" alt="Unified Multimodal Models" class="motivation-img clickable-image">
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+  
   <section class="section">
     <div class="container is-max-desktop">
       <div class="columns is-centered has-text-centered">
         <div class="column is-full">
           <h2 class="title is-3">Methodology</h2>
-          <video autoplay muted loop playsinline controls preload="metadata" aria-label="Overall framework of UniBrain" style="margin-bottom: 20px; width: 100%; height: auto;">
+          <video class="methodology-video" autoplay muted loop playsinline controls preload="metadata" aria-label="Overall framework of UniBrain">
             <source src="static/videos/method.mov" type="video/mp4">
           </video>
-          <div class="content has-text-justified">
-            <p>
-              <strong>(a) Interleaved Data Flow:</strong> We formulate missing modality imputation and understanding as an autoregressive sequence modeling problem. Driven by a clinical instruction, UniBrain explicitly plans a conceptual step before synthesizing a missing sequence, seamlessly bridging the visual-semantic gap.
-            </p>
-            <p>
-              <strong>(b) Unified Modeling & Self-Alignment:</strong> Built upon the MoT architecture, UniBrain employs a self-alignment loss that conditions the generation expert on dense ViT embeddings. This mitigates the domain gap without demanding dense, pixel-level text descriptions.
-            </p>
-            <p>
-              <strong>(c) Dynamic Hidden States:</strong> To alleviate exposure bias in long-context generation, we introduce a training-time KV-cache mechanism. UniBrain conditions on its own self-generated visual artefacts during training, ensuring robust autoregressive inference.
-            </p>
+          <div class="methodology-highlights" aria-label="Methodology highlights">
+            <article class="methodology-highlight">
+              <div class="methodology-highlight__index">A</div>
+              <div class="methodology-highlight__body">
+                <div class="methodology-flow">
+                  <div class="methodology-flow__problem">
+                    <span>Problem</span>
+                    <p>Lack of suitable datasets for unified modeling</p>
+                  </div>
+                  <div class="methodology-flow__arrow" aria-hidden="true">
+                    <i class="fas fa-arrow-right"></i>
+                  </div>
+                  <div class="methodology-flow__solution">
+                    <span>Solution</span>
+                    <h3>Interleaved data flow</h3>
+                    <p>We interleave image and text data by formulating sequential reasoning-enriched generation tasks before the final understanding.</p>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="methodology-highlight">
+              <div class="methodology-highlight__index">B</div>
+              <div class="methodology-highlight__body">
+                <div class="methodology-flow">
+                  <div class="methodology-flow__problem">
+                    <span>Problem</span>
+                    <p>Gap between medical understanding and image generation</p>
+                  </div>
+                  <div class="methodology-flow__arrow" aria-hidden="true">
+                    <i class="fas fa-arrow-right"></i>
+                  </div>
+                  <div class="methodology-flow__solution">
+                    <span>Solution</span>
+                    <h3>Self-alignment refinement</h3>
+                    <p>Dense ViT-guided reconstruction reduces domain gap and enriches understanding-enhanced generation in a self-supervised manner.</p>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="methodology-highlight">
+              <div class="methodology-highlight__index">C</div>
+              <div class="methodology-highlight__body">
+                <div class="methodology-flow">
+                  <div class="methodology-flow__problem">
+                    <span>Problem</span>
+                    <p>Exposure bias in long-context medical reasoning</p>
+                  </div>
+                  <div class="methodology-flow__arrow" aria-hidden="true">
+                    <i class="fas fa-arrow-right"></i>
+                  </div>
+                  <div class="methodology-flow__solution">
+                    <span>Solution</span>
+                    <h3>Dynamic hidden states</h3>
+                    <p>Training-time KV-cache conditioning improves robustness to generated visual context.</p>
+                  </div>
+                </div>
+              </div>
+            </article>
           </div>
         </div>
       </div>
@@ -446,7 +528,7 @@
           <h2 class="title is-3">Future Works & Limitations</h2>
           <div class="content has-text-justified">
             <p>
-              While UniBrain demonstrates strong performance in 2D slice-by-slice generation, a known limitation when synthesizing volumetric data is the lack of 3D contextual awareness. When individual 2D inferences are stacked to form a 3D volume, it results in a visible <strong>flickering effect</strong> along the z-axis. Future iterations of UniBrain will explore 3D-aware adaptations and temporal consistency modules to ensure smooth structural continuity across volumetric MRI scans.
+              Main limitation: current framework only support 2D modeling, resulting in a visible <strong>flickering effect</strong> for generation task and biased textual description for understanding task.
             </p>
           </div>
           
