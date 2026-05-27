@@ -330,12 +330,6 @@
         </ul>
       </div>
 
-      <div class="content">
-        <h3 class="title is-4">Diagnosis and Report Generation with Missing MRIs</h3>
-        <p>UniBrain achieves state-of-the-art diagnostic accuracy, specifically scoring <strong>74.47% Top-1 Accuracy</strong> in the highly challenging T1w-only availability setting, jumping to <strong>82.06%</strong> with complete data.</p>
-        <figure class="image mt-4 mb-5">
-          <img src="static/images/diagnosis.png" alt="Diagnosis and report generation with missing MRIs visualization" loading="lazy">
-        </figure>
         <div class="table-container">
           <table class="table is-striped is-fullwidth is-hoverable">
             <thead>
@@ -347,58 +341,58 @@
                 <th colspan="2" class="has-text-centered">Complete Data</th>
               </tr>
               <tr>
-                <th>Top-1</th>
-                <th>RaTE</th>
-                <th>Top-1</th>
-                <th>RaTE</th>
-                <th>Top-1</th>
-                <th>RaTE</th>
-                <th>Top-1</th>
-                <th>RaTE</th>
+                <th class="has-text-centered">Top-1</th>
+                <th class="has-text-centered">ROUGE</th>
+                <th class="has-text-centered">Top-1</th>
+                <th class="has-text-centered">ROUGE</th>
+                <th class="has-text-centered">Top-1</th>
+                <th class="has-text-centered">ROUGE</th>
+                <th class="has-text-centered">Top-1</th>
+                <th class="has-text-centered">ROUGE</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td>SimMLM (Implicit)</td>
-                <td>65.98</td><td>-</td>
-                <td>74.47</td><td>-</td>
-                <td>76.60</td><td>-</td>
-                <td>78.72</td><td>-</td>
+                <td class="has-text-centered">65.98</td><td class="has-text-centered">-</td>
+                <td class="has-text-centered">74.47</td><td class="has-text-centered">-</td>
+                <td class="has-text-centered">76.60</td><td class="has-text-centered">-</td>
+                <td class="has-text-centered">78.72</td><td class="has-text-centered">-</td>
               </tr>
               <tr>
                 <td>M2DN + UniBrain (Explicit)</td>
-                <td>56.03</td><td>57.76</td>
-                <td>75.18</td><td>60.08</td>
-                <td>76.60</td><td>60.98</td>
-                <td>-</td><td>-</td>
+                <td class="has-text-centered">56.03</td><td class="has-text-centered">33.93</td>
+                <td class="has-text-centered">75.18</td><td class="has-text-centered">36.38</td>
+                <td class="has-text-centered">76.60</td><td class="has-text-centered">38.36</td>
+                <td class="has-text-centered">-</td><td class="has-text-centered">-</td>
               </tr>
               <tr>
-                <td>Lingshu</td>
-                <td>21.99</td><td>18.08</td>
-                <td>24.82</td><td>19.49</td>
-                <td>35.55</td><td>29.79</td>
-                <td>41.13</td><td>37.29</td>
+                <td>UniMedVL (MLLM)</td>
+                <td class="has-text-centered">29.79</td><td class="has-text-centered">13.90</td>
+                <td class="has-text-centered">30.50</td><td class="has-text-centered">14.73</td>
+                <td class="has-text-centered">32.62</td><td class="has-text-centered">13.81</td>
+                <td class="has-text-centered">38.30</td><td class="has-text-centered">13.70</td>
               </tr>
               <tr>
-                <td>UniMedVL</td>
-                <td>29.79</td><td>42.58</td>
-                <td>30.50</td><td>41.84</td>
-                <td>32.62</td><td>43.58</td>
-                <td>38.30</td><td>43.97</td>
+                <td>Lingshu (MLLM)</td>
+                <td class="has-text-centered">21.99</td><td class="has-text-centered">18.08</td>
+                <td class="has-text-centered">24.82</td><td class="has-text-centered">19.49</td>
+                <td class="has-text-centered">29.79</td><td class="has-text-centered">18.13</td>
+                <td class="has-text-centered">41.13</td><td class="has-text-centered">20.26</td>
               </tr>
               <tr>
-                <td><strong>UniBrain Und. Only</strong></td>
-                <td>69.50</td><td>61.50</td>
-                <td>73.05</td><td>60.48</td>
-                <td>76.60</td><td>61.04</td>
-                <td><strong>82.06</strong></td><td><strong>61.62</strong></td>
+                <td><strong>UniBrain Und.</strong></td>
+                <td class="has-text-centered">69.50</td><td class="has-text-centered"><strong>37.35</strong></td>
+                <td class="has-text-centered">73.05</td><td class="has-text-centered">35.94</td>
+                <td class="has-text-centered">76.60</td><td class="has-text-centered">38.05</td>
+                <td class="has-text-centered"><strong>82.06</strong></td><td class="has-text-centered"><strong>38.94</strong></td>
               </tr>
               <tr>
-                <td><strong>UniBrain</strong></td>
-                <td><strong>74.47</strong></td><td><strong>61.57</strong></td>
-                <td><strong>76.60</strong></td><td><strong>61.24</strong></td>
-                <td><strong>78.01</strong></td><td><strong>61.90</strong></td>
-                <td><strong>82.06</strong></td><td><strong>61.62</strong></td>
+                <td><strong>UniBrain (Ours)</strong></td>
+                <td class="has-text-centered"><strong>74.47</strong></td><td class="has-text-centered">36.93</td>
+                <td class="has-text-centered"><strong>76.60</strong></td><td class="has-text-centered"><strong>38.23</strong></td>
+                <td class="has-text-centered"><strong>78.01</strong></td><td class="has-text-centered"><strong>38.68</strong></td>
+                <td class="has-text-centered"><strong>82.06</strong></td><td class="has-text-centered"><strong>38.94</strong></td>
               </tr>
             </tbody>
           </table>
@@ -512,6 +506,84 @@
                 <td class="has-text-centered"><strong>23.43</strong></td><td class="has-text-centered">63.83</td>
                 <td class="has-text-centered"><strong>23.49</strong></td><td class="has-text-centered"><strong>68.08</strong></td>
                 <td class="has-text-centered"><strong>23.52</strong></td><td class="has-text-centered"><strong>76.60</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3 class="title is-4 mt-6">Ablation Studies</h3>
+        <p class="has-text-justified mb-4">
+          We evaluated the contributions of each core component in UniBrain: <strong>Unified</strong> modeling with interleaved data, <strong>SA</strong> (Self-Alignment) for fine-grained representation, and <strong>DHS</strong> (Dynamic Hidden States) for robust autoregressive generation. Starting from a vanilla baseline (Model A), unified modeling greatly improves diagnosis performance. Adding SA benefits generation quality, while the final DHS mechanism achieves the optimal overall balance for both generation and understanding tasks.
+        </p>
+        
+        <div class="table-container">
+          <table class="table is-striped is-fullwidth is-hoverable">
+            <thead>
+              <tr>
+                <th rowspan="2" style="vertical-align: middle;">Model</th>
+                <th colspan="3" class="has-text-centered">Components</th>
+                <th colspan="3" class="has-text-centered">Understanding (T1w only)</th>
+                <th colspan="3" class="has-text-centered">Generation (T1w &rarr; ... &rarr; T1c)</th>
+              </tr>
+              <tr>
+                <th class="has-text-centered">Unified</th>
+                <th class="has-text-centered">SA</th>
+                <th class="has-text-centered">DHS</th>
+                <th class="has-text-centered">Acc-1</th>
+                <th class="has-text-centered">ROUGE</th>
+                <th class="has-text-centered">RaTEScore</th>
+                <th class="has-text-centered">PSNR</th>
+                <th class="has-text-centered">SSIM</th>
+                <th class="has-text-centered">Top-1</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Model A (Baseline)</td>
+                <td class="has-text-centered"></td>
+                <td class="has-text-centered"></td>
+                <td class="has-text-centered"></td>
+                <td class="has-text-centered">70.05</td>
+                <td class="has-text-centered">35.71</td>
+                <td class="has-text-centered">60.12</td>
+                <td class="has-text-centered">-</td>
+                <td class="has-text-centered">-</td>
+                <td class="has-text-centered">-</td>
+              </tr>
+              <tr>
+                <td>Model B</td>
+                <td class="has-text-centered"><i class="fas fa-check has-text-success"></i></td>
+                <td class="has-text-centered"></td>
+                <td class="has-text-centered"></td>
+                <td class="has-text-centered"><strong>75.11</strong></td>
+                <td class="has-text-centered">36.35</td>
+                <td class="has-text-centered">60.52</td>
+                <td class="has-text-centered">21.28</td>
+                <td class="has-text-centered">0.8329</td>
+                <td class="has-text-centered">70.12</td>
+              </tr>
+              <tr>
+                <td>Model C</td>
+                <td class="has-text-centered"><i class="fas fa-check has-text-success"></i></td>
+                <td class="has-text-centered"><i class="fas fa-check has-text-success"></i></td>
+                <td class="has-text-centered"></td>
+                <td class="has-text-centered">73.76</td>
+                <td class="has-text-centered">35.34</td>
+                <td class="has-text-centered">59.23</td>
+                <td class="has-text-centered">22.09</td>
+                <td class="has-text-centered">0.8456</td>
+                <td class="has-text-centered">74.03</td>
+              </tr>
+              <tr>
+                <td><strong>UniBrain (Ours)</strong></td>
+                <td class="has-text-centered"><i class="fas fa-check has-text-success"></i></td>
+                <td class="has-text-centered"><i class="fas fa-check has-text-success"></i></td>
+                <td class="has-text-centered"><i class="fas fa-check has-text-success"></i></td>
+                <td class="has-text-centered">74.47</td>
+                <td class="has-text-centered"><strong>36.93</strong></td>
+                <td class="has-text-centered"><strong>61.57</strong></td>
+                <td class="has-text-centered"><strong>22.47</strong></td>
+                <td class="has-text-centered"><strong>0.8519</strong></td>
+                <td class="has-text-centered"><strong>76.60</strong></td>
               </tr>
             </tbody>
           </table>
