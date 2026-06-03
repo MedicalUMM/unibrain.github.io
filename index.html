@@ -206,7 +206,7 @@
     </div>
   </section>
 
-<section class="section has-background-white">
+<!-- <section class="section has-background-white">
     <div class="container is-max-desktop">
       <h2 class="title is-3 has-text-centered mb-6">Motivation</h2>
       
@@ -236,7 +236,7 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> -->
   
   <section class="section">
     <div class="container is-max-desktop">
@@ -316,7 +316,7 @@
     <div class="container is-max-desktop">
       <h2 class="title is-3 has-text-centered">Experimental Results</h2>
 
-      <div class="content">
+      <!-- <div class="content">
         <h3 class="title is-4">Dataset: RadGenome-Brain MRI</h3>
         <p class="has-text-justified">
           Our model training and evaluation rely on the public <strong><a href="https://github.com/ljy19970415/AutoRG-Brain" target="_blank" rel="noopener noreferrer">RadGenome-Brain MRI</a></strong> dataset, which contains <strong>3,408 brain MRI scans</strong> acquired from multiple sites with paired radiology reports. The reports were written by senior radiologists, providing findings and impressions grounded in the annotated image regions.
@@ -328,9 +328,13 @@
           <li><strong>Preprocessing:</strong> All images are resampled to the same spacial resolution and normalized to same intensity range via percentile clip. Size-related text descriptions are projected to the 2D slice-specific space.</li>
           <li><strong>Note:</strong> Subjects who don't have multi-sequence MRIs are excluded from the analysis for fair comparisons.</li>
         </ul>
-      </div>
+      </div> -->
 
-        <div class="table-container">
+      <h3 class="title is-4 mt-6">MRI Diagnosis and Report Generation</h3>  
+      <figure class="image mt-4 mb-5">
+        <img src="static/images/diagnosis.png" alt="MRI diagnosis and report generation results" loading="lazy">
+      </figure>
+      <div class="table-container">
           <table class="table is-striped is-fullwidth is-hoverable">
             <thead>
               <tr>
@@ -643,8 +647,7 @@
   title={Unified Multimodal Model for Brain MRI Imputation and Understanding},
   author={Song, Zhiyun and Liu, Che and Xia, Tian and Kori, Avinash and Bai, Wenjia},
   booktitle={International Conference on Medical Image Computing and Computer-Assisted Intervention (MICCAI)},
-  year={2026},
-  url={https://github.com/zhiyuns/UniBrain}
+  year={2026}
 }</code></pre>
     </div>
   </section>
